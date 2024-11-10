@@ -1,0 +1,238 @@
+body,
+html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Set the background image */
+.cont {
+    background: url('signup1.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Add a background overlay */
+.cont::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    /* Dark overlay effect */
+    z-index: 1;
+}
+
+/* Center the form with flexbox */
+.border-container {
+    position: relative;
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+textarea,
+select,
+input[type="datetime-local"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Header and Footer Styles */
+header,
+footer {
+    background-color: rgb(72, 2, 2);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(72, 2, 2);
+    color: #fff;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header h1 {
+    margin-left: 20px;
+    font-size: 24px;
+    flex: 1;
+    text-decoration: none;
+}
+
+header nav ul {
+    margin: 0;
+}
+
+header nav ul li {
+    display: inline;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+footer {
+    background: linear-gradient(170deg, #480202, rgb(25, 25, 25));
+    color: white;
+    padding: 40px 20px;
+    box-shadow: 0px 4px 10px rgba(64, 20, 20, 0.747);
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer-left {
+    flex: 1;
+    max-width: 300px;
+}
+
+.footer-left h2 {
+    margin-bottom: 15px;
+    color: white;
+    font-weight: bold;
+}
+
+.footer-left p {
+    font-size: 1.3em;
+    line-height: 1.6;
+}
+
+.footer-left::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: auto;
+    background-color: #ffcc00;
+    margin: 15px 0;
+}
+
+.divider {
+    border-left: 6px solid #f0efee;
+    height: auto;
+    margin: 0 20px;
+}
+
+.footer-middle {
+    display: flex;
+    justify-content: space-between;
+    flex: 2;
+    margin: 20px 0;
+}
+
+.footer-middle div {
+    flex: 1;
+    padding: 0 20px;
+}
+
+.footer-middle h3 {
+    border-bottom: 4px solid #fcfcfb;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    font-weight: bold;
+    color: white;
+}
+
+.footer-middle ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-middle ul li {
+    margin: 8px 0;
+    font-size: 1em;
+    line-height: 1.6;
+    font-family: Fredoka;
+    font-weight: 500;
+}
+
+.footer-middle a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-middle a:hover {
+    color: #ffcc00;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.footer-bottom ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-bottom li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.footer-bottom a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-bottom a:hover {
+    color: #ffcc00;
+}

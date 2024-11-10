@@ -1,0 +1,258 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.cont {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* Center the border-container */
+}
+
+.border-container {
+    display: flex;
+    border: 2px solid #3c090e;
+    /* Add border */
+    border-radius: 10px;
+    overflow: hidden;
+    /* Ensures child elements don't overflow the border */
+    padding: 60px;
+}
+
+.content1 {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+}
+
+.content2 {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content2 img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+#report-crime {
+    background-color: #fff;
+    padding: 50px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+}
+
+#report-crime h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin-bottom: 5px;
+}
+
+form input,
+form textarea,
+form select {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+form button {
+    padding: 10px;
+    background-color: #3c090e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+form button:hover {
+    background-color: #8b0000;
+}
+
+/* Header and Footer Styles */
+header,
+footer {
+    background-color: rgb(72, 2, 2);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(72, 2, 2);
+    color: #fff;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header h1 {
+    margin-left: 20px;
+    font-size: 24px;
+    flex: 1;
+    text-decoration: none;
+}
+
+header nav ul {
+    margin: 0;
+}
+
+header nav ul li {
+    display: inline;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+footer {
+    background: linear-gradient(170deg, #480202, rgb(25, 25, 25));
+    color: white;
+    padding: 40px 20px;
+    box-shadow: 0px 4px 10px rgba(64, 20, 20, 0.747);
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer-left {
+    flex: 1;
+    max-width: 300px;
+}
+
+.footer-left h2 {
+    margin-bottom: 15px;
+    color: white;
+    font-weight: bold;
+}
+
+.footer-left p {
+    font-size: 1.3em;
+    line-height: 1.6;
+}
+
+.footer-left::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: auto;
+    background-color: #ffcc00;
+    margin: 15px 0;
+}
+
+.divider {
+    border-left: 6px solid #f0efee;
+    height: auto;
+    margin: 0 20px;
+}
+
+.footer-middle {
+    display: flex;
+    justify-content: space-between;
+    flex: 2;
+    margin: 20px 0;
+}
+
+.footer-middle div {
+    flex: 1;
+    padding: 0 20px;
+}
+
+.footer-middle h3 {
+    border-bottom: 4px solid #fcfcfb;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    font-weight: bold;
+    color: white;
+}
+
+.footer-middle ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-middle ul li {
+    margin: 8px 0;
+    font-size: 1em;
+    line-height: 1.6;
+    font-family: Fredoka;
+    font-weight: 500;
+}
+
+.footer-middle a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-middle a:hover {
+    color: #ffcc00;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.footer-bottom ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-bottom li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.footer-bottom a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-bottom a:hover {
+    color: #ffcc00;
+}

@@ -1,0 +1,305 @@
+/* General Styles */
+body {
+    font-family: 'Fredoka', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    /* Light background for readability */
+    color: #333;
+    /* Dark text for contrast */
+}
+
+/* Header Styles */
+header {
+    background-color: #003366;
+    /* Dark blue background */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header .logo img {
+    width: 80px;
+    /* Adjust logo size */
+    height: auto;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    /* Horizontal list items */
+    margin: 0 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Main Content Styles */
+main {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+    /* Center align the content */
+    background-color: white;
+    /* White background for main content */
+    border-radius: 8px;
+    /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+}
+
+h2 {
+    color: rgb(72, 2, 2);
+    /* Heading color */
+    margin-top: 0;
+    /* Remove margin from top */
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(72, 2, 2);
+    color: #fff;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+header h1 {
+    margin-left: 20px;
+    font-size: 24px;
+    flex: 1;
+    text-decoration: none;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+}
+
+header nav ul li {
+    display: inline;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+h3 {
+    color: rgb(72, 2, 2);
+    /* Lighter blue for subheadings */
+}
+
+/* List Styles */
+ul {
+    padding-left: 20px;
+    /* Indent list items */
+}
+
+li {
+    margin: 5px 0;
+    /* Space between list items */
+}
+
+/* Footer Styles */
+footer {
+    background: linear-gradient(170deg, #480202, rgb(25, 25, 25));
+    /* Glossy gradient background */
+    color: white;
+    /* White text */
+    padding: 40px 20px;
+    /* Padding for footer */
+    box-shadow: 0px 4px 10px rgba(64, 20, 20, 0.747);
+    /* Subtle shadow for depth */
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    /* Space between left and middle sections */
+    flex-wrap: wrap;
+    /* Wrap items on smaller screens */
+}
+
+.footer-left {
+    flex: 1;
+    /* Allow footer left section to grow */
+    max-width: 300px;
+    /* Max width for left section */
+}
+
+.footer-left h2 {
+    margin-bottom: 15px;
+    /* Space below heading */
+    color: white;
+    /* White color for heading */
+    font-weight: bold;
+    /* Bold heading */
+}
+
+.footer-left p {
+    font-size: 1.3em;
+    /* Adjust font size for better readability */
+    line-height: 1.6;
+    /* Improve readability with line height */
+}
+
+.footer-left::after {
+    content: "";
+    /* Empty content for pseudo-element */
+    display: block;
+    /* Make it a block element */
+    width: 100%;
+    /* Full width */
+    height: auto;
+    /* Height of the line */
+    background-color: #ffcc00;
+    /* Color of the line */
+    margin: 15px 0;
+    /* Margin above and below the line */
+}
+
+.divider {
+    border-left: 6px solid #f0efee;
+    /* Vertical line between sections */
+    height: auto;
+    /* Height to fit content */
+    margin: 0 20px;
+    /* Space around the line */
+}
+
+.footer-middle {
+    display: flex;
+    /* Flexbox for middle section */
+    justify-content: space-between;
+    /* Space between product, general, and social sections */
+    flex: 2;
+    /* Allow footer middle section to grow */
+    margin: 20px 0;
+    /* Margin for spacing */
+}
+
+.footer-middle div {
+    flex: 1;
+    /* Each section in the middle to take equal space */
+    padding: 0 20px;
+    /* Padding for each section */
+}
+
+.footer-middle h3 {
+    border-bottom: 4px solid #fcfcfb;
+    /* Bottom border for headings */
+    padding-bottom: 10px;
+    /* Space below heading */
+    margin-bottom: 15px;
+    /* Margin below heading for better spacing */
+    font-size: 1.4em;
+    /* Increase font size for headings */
+    font-weight: bold;
+    /* Bold headings for emphasis */
+    color: white;
+    /* White color for headings */
+}
+
+.footer-middle ul {
+    list-style-type: none;
+    /* Remove default bullet points */
+    padding: 0;
+    /* Remove default padding */
+}
+
+.footer-middle ul li {
+    margin: 8px 0;
+    /* Space between list items */
+    font-size: 1em;
+    /* Adjust font size for list items */
+    line-height: 1.6;
+    font-family: Fredoka;
+    font-weight: 500;
+    /* Improve readability with line height */
+}
+
+.footer-middle a {
+    color: white;
+    /* White link color */
+    text-decoration: none;
+    /* Remove underline from links */
+    transition: color 0.3s;
+    /* Smooth transition for hover effect */
+}
+
+.footer-middle a:hover {
+    color: #ffcc00;
+    /* Change color on hover */
+}
+
+.social-icon {
+    width: 20px;
+    /* Adjust icon size as needed */
+    height: 20px;
+    /* Adjust icon size as needed */
+    margin-right: 8px;
+    /* Space between icon and text */
+    vertical-align: middle;
+    /* Align icon with text */
+}
+
+.footer-bottom {
+    text-align: center;
+    /* Center text for bottom section */
+    margin-top: 20px;
+    /* Space above */
+}
+
+.footer-bottom ul {
+    list-style-type: none;
+    /* Remove default bullet points */
+    padding: 0;
+    /* Remove default padding */
+}
+
+.footer-bottom li {
+    display: inline;
+    /* Display list items inline */
+    margin: 0 15px;
+    /* Space between links */
+}
+
+.footer-bottom a {
+    color: white;
+    /* White link color */
+    text-decoration: none;
+    /* Remove underline from links */
+    transition: color 0.3s;
+    /* Smooth transition for hover effect */
+}
+
+.footer-bottom a:hover {
+    color: #ffcc00;
+    /* Change color on hover */
+}

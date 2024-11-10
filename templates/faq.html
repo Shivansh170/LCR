@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Local Crime Reporting</title>
+    <link rel="stylesheet" href="faq.css">
+    <link rel="stylesheet" href="headerandfooter.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="IMG-20241002-WA0025.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="{{url_for('static',filename='faq.css')}}">
+    <style>
+        /* Additional styles for the FAQ section */
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .faq-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .faq-answer {
+            display: none; /* Initially hide the answers */
+            margin-top: 10px;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="static/IMG-20241002-WA0025.jpg" alt="UP Police Logo" class="circular-logo" />
+        </div>
+        <h2 style="color: whitesmoke;">LCR</h2>
+        <div class="header-middle">
+            <div class="tagline">
+                <p>Ensuring Safety Together <span id="tagline" class="rotate">| Stay Alert!! | Report Crime!! | Keep Communities Safe!!</span></p>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search here..." id="search"> <!-- Corrected ID -->
+                <button type="submit" id="search-button" class="search-btn">Search</button> <!-- Added ID -->
+            </div>
+        </div>
+
+        <div class="datetime" id="datetime"></div>
+
+        <nav>
+            <ul>
+                <li><a href="front_page.html">Home</a></li>
+                <li><a href="login.html">Report Crime</a></li>
+                <li><a href="crimerates.html">Dashboard</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="parallax"></section> <!-- Parallax Section -->
+        <section class="section-yellow">
+            <h2>Section Title 1</h2>
+            <p>Some content goes here...</p>
+        </section>
+    </main>
+    <main>
+        <section>
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item" onclick="toggleAnswer(this)">
+                <h3>1. Is my area in Ghaziabad safe?</h3>
+                <p class="faq-answer">The safety of an area can vary based on numerous factors including time of day and recent crime reports. It’s advisable to stay updated with local news and crime statistics.</p>
+            </div>
+            <div class="faq-item" onclick="toggleAnswer(this)">
+                <h3>2. What are the safest neighborhoods in Ghaziabad?</h3>
+                <p class="faq-answer">Neighborhoods like Indirapuram and Vasundhara are generally considered safer due to their robust community presence and police patrolling.</p>
+            </div>
+            <div class="faq-item" onclick="toggleAnswer(this)">
+                <h3>3. How can I report suspicious activity in my area?</h3>
+                <p class="faq-answer">If you notice any suspicious behavior, you should report it immediately to local authorities or use the reporting feature on this website.</p>
+            </div>
+            <div class="faq-item" onclick="toggleAnswer(this)">
+                <h3>4. Are there any resources available for crime victims?</h3>
+                <p class="faq-answer">Yes, there are several local organizations and helplines that offer support and resources for victims of crime in Ghaziabad.</p>
+            </div>
+            <div class="faq-item" onclick="toggleAnswer(this)">
+                <h3>5. What should I do if I feel unsafe in my neighborhood?</h3>
+                <p class="faq-answer">If you feel unsafe, it is crucial to trust your instincts. You can contact local law enforcement and consider sharing your concerns with neighbors.</p>
+            </div>
+        </section>
+    </main>
+    <script>
+        // Function to toggle the visibility of FAQ answers
+        function toggleAnswer(item) {
+            const answer = item.querySelector('.faq-answer');
+            answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+    </main>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-left">
+                <h2>LCR: Community Safety</h2>
+                <p>The core purpose of a Local Crime Reporting is to create a system that allows communities to stay informed about criminal activities in their area.</p>
+            </div>
+            <div class="divider"></div> <!-- Vertical line divider -->
+            <div class="footer-middle">
+                <div class="product">
+                    <h3>What we do?</h3>
+                    <ul>
+                        <li><a href="faq.html">How we submit a crime report?</a></li>
+                       
+                    </ul>
+                </div>
+                <div class="general">
+                    <h3>GENERAL</h3>
+                    <ul>
+                        <li><a href="newsroom.html">Newsroom</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="mailto:lcr6.022@gmail.com">Email</a></li>
+                    </ul>
+                </div>
+                <div class="social">
+                    <h3>SOCIAL</h3>
+                    <ul>
+                        <li>
+                            <a href="https://www.linkedin.com" target="_blank">
+                                <img src="static/instagram logo.svg" alt="LinkedIn" class="social-icon" /> Instagram
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.twitter.com" target="_blank">
+                                <img src="static/X.jpg" alt="Twitter" class="social-icon" /> Twitter
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com" target="_blank">
+                                <img src="static/Facebook_.png" alt="Facebook" class="social-icon" /> Facebook
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <ul>
+                <li><a href="documentation.html">Documentation</a></li>
+                <li><a href="test.html">Privacy & Cookie Policy</a></li>
+            </ul>
+        </div>
+    </footer>
+    <script>
+        // Script for updating the current date and time
+    function updateTime() {
+        const now = new Date();
+        document.getElementById('datetime').innerHTML = now.toLocaleString();
+    }
+
+    const phrases = ["Stay Alert!!", "Report Crime", "Keep Communities Safe!!"];
+    let index = 0;
+
+    function rotateText() {
+        index = (index + 1) % phrases.length;
+        document.getElementById("tagline").textContent = phrases[index];
+    }
+
+    setInterval(updateTime, 1000); // Update time every second
+    setInterval(rotateText, 3000); // Change tagline every 3 seconds
+
+    // Search functionality
+    document.getElementById("search-button").addEventListener("click", function () {
+        const searchTerm = document.getElementById("search").value;
+        const resultsContainer = document.getElementById("search-results-container");
+
+        // Clear previous results
+        resultsContainer.innerHTML = '';
+
+        // Dummy data for testing
+        const dummyData = [
+            { description: "Theft reported on 10th Avenue." },
+            { description: "Assault incident near Central Park." },
+            { description: "Vandalism case at 5th Street." },
+            { description: "Ghaziabad is overpopulated." }
+        ];
+
+        // Filter the results based on the search term
+        const results = dummyData.filter(result => result.description.toLowerCase().includes(searchTerm.toLowerCase()));
+
+        if (results.length === 0) {
+            resultsContainer.innerHTML = '<p>No results found.</p>';
+        } else {
+            results.forEach(result => {
+                const div = document.createElement("div");
+                div.className = "search-result"; 
+                div.textContent = result.description; 
+                resultsContainer.appendChild(div); 
+            });
+        }
+    });
+</script>
+</body>
+
+</html>

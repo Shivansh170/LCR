@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LCR</title>
+    <link rel="stylesheet" href="project.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="logo.jpeg" type="circular-logo">
+    <link rel="stylesheet" href="{{url_for('static',filename='project.css')}}">
+    <!-- Leaflet.js CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <style>
+        
+         .label {
+            background-color: white;
+            padding: 2px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        .legend {
+            background-color: rgb(227, 221, 221);
+            padding: 10px;
+            line-height: 1.5;
+            font-size: 12px;
+        }
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .search-result {
+            background: #fff;
+            padding: 10px;
+            /* border: 1px solid #ccc; */
+        }
+
+        header, footer {
+            background-color: rgb(72, 2, 2);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            color: whitesmoke;
+        }
+
+        #search {
+            width: 400px;
+            height: 40px;
+            border-radius: 5px;
+        }
+
+        #search-button:hover {
+            color: blue;
+        }
+
+        #tagline{
+            font-size: large;
+             font-weight: bolder;
+             color: aqua;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .slider {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none; /* Hide all slides by default */
+        }
+
+        img {
+            width: 100%; /* Make images responsive */
+            height: auto;
+        }
+
+        .fade {
+            animation: fade 1.5s;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: .4
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="static/IMG-20241002-WA0025.jpg" alt="UP Police Logo" class="circular-logo" />
+        </div>
+        <h2 style="color: whitesmoke;">LCR</h2>
+        <div class="header-middle">
+            <div class="tagline">
+                <p>Ensuring Safety Together <span id="tagline" class="rotate">| Stay Alert!! | Report Crime!! | Keep Communities Safe!!</span></p>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search here..." id="search">
+                <button type="submit" id="search-button" class="search-btn">Search</button>
+            </div>
+        </div>
+    
+        <div class="datetime" id="datetime"></div>
+    
+        <nav>
+            <ul>
+                <li><a href="front_page.html">Home</a></li>
+                <li><a href="login.html">Report Crime</a></li>
+                <li><a href="crimerates.html">Dashboard</a></li>
+                {% if session.get('logged_in') %}  <!-- Check if the user is logged in -->
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                    <li><a href="login.html">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="search-results"></section>
+    <h2 style="color: black;">Search Results</h2>
+    <div id="search-results-container"></div> <!-- This will be populated with search results -->
+    </section>
+
+    <section id="hero">
+        <div class="hero-content">
+            <h2 id="h2">Stay Safe in Your Community</h2>
+            <p>Get real-time updates on crime in your area and help others by reporting crimes.</p>
+            <a href="login.html" class="btn btn-primary">Report a Crime</a>
+            <a href="crimerates.html" class="btn btn-secondary">View Crime Rates</a>
+        </div>
+    </section>
+
+    <section id="crime-stats">
+        <h2 style="color: black;">Crime Statistics</h2>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <img src="static/theft.png" alt="Theft Icon">
+                <h3>10,000+</h3>
+                <p>Theft Cases Reported</p>
+            </div>
+            <div class="stat-item">
+                <img src="static/assault.png" alt="Assault Icon">
+                <h3>5,000+</h3>
+                <p>Assault Cases Reported</p>
+            </div>
+            <div class="stat-item">
+                <img src="static/vandalism.png" alt="Vandalism Icon">
+                <h3>2,500+</h3>
+                <p>Vandalism Cases Reported</p>
+            </div>
+        </div>
+    </section>
+     <!--image slider-->
+     <section>
+        <div class="slider">
+            <div class="slide fade">
+                <img src="static/image 1s (1).jpg" alt="Image 1" style="width: 2000px; height: 800px;">
+            </div>
+            <div class="slide fade">
+                <img src="static/image 1s (2).jpg" alt="Image 2" style="width: 2000px; height: 800px;">
+            </div>
+            <div class="slide fade">
+                <img src="static/image 1s (3).jpg" alt="Image 3" style="width: 2000px; height: 800px;">
+            </div>
+            <div class="slide fade">
+                <img src="static/image 1s (4).jpg" alt="Image 4" style="width: 2000px; height: 800px;">
+            </div>
+            <div class="slide fade">
+                <img src="static/image 1s (5).jpg" alt="Image 5" style="width: 2000px; height: 800px;">
+            </div>
+            <div class="slide fade">
+                <img src="static/image 1s (6).jpg" alt="Image 6" style="width: 2000px; height: 800px;">
+            </div>
+            <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+            <a class="next" onclick="changeSlide(1)">&#10095;</a>
+        </div>
+    </section>
+    <h1 class="mf">
+        <center style="color: black;">LIVE MAP</center>
+    </h1>
+    
+    <!-- Map container -->
+    <div id="map">
+    <div class="legend">
+        <strong>Crime Rate Legend:</strong><br>
+        <i style="background: red; padding: 2px 10px;"></i> High Crime<br>
+        <i style="background: yellow; padding: 2px 10px;"></i> Medium Crime<br>
+        <i style="background: green; padding: 2px 10px;"></i> Low Crime
+    </div></div>
+
+    <!-- Link for activating live map tracking -->
+    <a href="#map" id="live-map-link">Live Map Tracking</a>
+
+    <section id="testimonials">
+        <h2 style="color: black;">What Our Users Say</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial">
+                <p>"This platform helped me report a crime easily. It's really helpful for our community!"</p>
+                <h4>- Ramesh K.</h4>
+            </div>
+            <div class="testimonial">
+                <p>"I love how I can view real-time crime data. It keeps me informed!"</p>
+                <h4>- Sita P.</h4>
+            </div>
+        </div>
+        
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-left">
+                <h2>LCR: Community Safety</h2>
+                <p>The core purpose of a Local Crime Reporting is to create a system that allows communities to stay informed about criminal activities in their area.</p>
+            </div>
+            <div class="divider"></div> <!-- Vertical line divider -->
+            <div class="footer-middle">
+                <div class="product">
+                    <h3>What we do?</h3>
+                    <ul>
+                        <li><a href="faq.html">How we submit a crime report?</a></li>
+                        <li><a href="#map" id="live-map-link">Live map Tracking</a></li>
+                    </ul>
+                </div>
+                <div class="general">
+                    <h3>GENERAL</h3>
+                    <ul>
+                        <li><a href="newsroom.html">Newsroom</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="mailto:lcr6.022@gmail.com">Email</a></li>
+                    </ul>
+                </div>
+                <div class="social">
+                    <h3>SOCIAL</h3>
+                    <ul>
+                        <li>
+                            <a href="https://www.linkedin.com" target="_blank">
+                                <img src="static/instagram logo.svg" alt="LinkedIn" class="social-icon" /> Instagram
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.twitter.com" target="_blank">
+                                <img src="static/X.jpg" alt="Twitter" class="social-icon" /> Twitter
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com" target="_blank">
+                                <img src="static/Facebook_.png" alt="Facebook" class="social-icon" /> Facebook
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <ul>
+                <li><a href="documentation.html">Documentation</a></li>
+                <li><a href="test.html">Privacy & Cookie Policy</a></li>
+            </ul>
+        </div>
+    </footer>
+    
+     <!-- Leaflet.js JavaScript -->
+     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>    
+    <script>
+        let slideIndex = 0;
+        showSlides();
+    
+        function showSlides() {
+            let slides = document.getElementsByClassName("slide");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none"; // Hide all slides
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            slides[slideIndex - 1].style.display = "block"; // Show the current slide
+            setTimeout(showSlides, 3000); // Change slide every 3 seconds
+        }
+    
+        function changeSlide(n) {
+            slideIndex += n;
+            let slides = document.getElementsByClassName("slide");
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            if (slideIndex < 1) { slideIndex = slides.length }
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none"; // Hide all slides
+            }
+            slides[slideIndex - 1].style.display = "block"; // Show the current slide
+        }
+    
+        // Script for updating the current date and time
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('datetime').innerHTML = now.toLocaleString();
+        }
+    
+        const phrases = ["Stay Alert!!", "Report Crime", "Keep Communities Safe!!"];
+        let index = 0;
+    
+        function rotateText() {
+            index = (index + 1) % phrases.length;
+            document.getElementById("tagline").textContent = phrases[index];
+        }
+    
+        setInterval(updateTime, 1000); // Update time every second
+        setInterval(rotateText, 3000); // Change tagline every 3 seconds
+    
+        // Search functionality
+        document.getElementById("search-button").addEventListener("click", function () {
+            const searchTerm = document.getElementById("search").value;
+            const resultsContainer = document.getElementById("search-results-container");
+    
+            // Clear previous results
+            resultsContainer.innerHTML = '';
+    
+            // Dummy data for testing
+            const dummyData = [
+                { description: "Theft reported on 10th Avenue." },
+                { description: "Assault incident near Central Park." },
+                { description: "Vandalism case at 5th Street." },
+                { description: "Ghaziabad is overpopulated." }
+            ];
+    
+            // Filter the results based on the search term
+            const results = dummyData.filter(result => result.description.toLowerCase().includes(searchTerm.toLowerCase()));
+    
+            if (results.length === 0) {
+                resultsContainer.innerHTML = '<p>No results found.</p>';
+            } else {
+                results.forEach(result => {
+                    const div = document.createElement("div");
+                    div.className = "search-result"; 
+                    div.textContent = result.description; 
+                    resultsContainer.appendChild(div); 
+                });
+            }
+        });
+    
+        // Check if the user is logged in
+        function checkLogin() {
+            return localStorage.getItem('isLoggedIn') === 'true';
+        }
+    
+        // Redirect to report crime if logged in
+        if (checkLogin()) {
+            document.getElementById('report-crime-link').setAttribute('href', 'signup.html');
+        } else {
+            document.getElementById('report-crime-link').setAttribute('href', 'login.html');
+        }
+    
+        // Handle login form submission
+        function handleLogin(event) {
+            event.preventDefault();
+            // Perform login validation here (e.g., check credentials)
+            // If login is successful, set the local storage item
+            localStorage.setItem('isLoggedIn', 'true');
+            window.location.href = 'report_crime.html'; // Redirect to report crime page
+        }
+    
+        // Activate live tracking when "Live Map Tracking" is clicked
+        document.getElementById('live-map-link').addEventListener('click', function () {
+            if (navigator.geolocation) {
+                navigator.geolocation.watchPosition(showPosition, showError);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        });
+    </script>
+    
+    <script>
+        // Initializing the map
+        const map = L.map('map').setView([28.6139, 77.2090], 10); // Center map at Delhi
+
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Regions data (name, coordinates, and crime rate)
+        const regions = [
+            { name: "Delhi", coords: [28.6139, 77.2090], rate: "high", statistics: { totalCrimes: 1200, violentCrimes: 400, propertyCrimes: 800 } },
+            { name: "Ghaziabad", coords: [28.6692, 77.4538], rate: "medium", statistics: { totalCrimes: 800, violentCrimes: 300, propertyCrimes: 500 } },
+            { name: "Noida", coords: [28.5355, 77.3910], rate: "low", statistics: { totalCrimes: 400, violentCrimes: 100, propertyCrimes: 300 } },
+            { name: "Faridabad", coords: [28.4082, 77.3178], rate: "high", statistics: { totalCrimes: 900, violentCrimes: 350, propertyCrimes: 550 } },
+            { name: "Gurgaon", coords: [28.4595, 77.0266], rate: "medium", statistics: { totalCrimes: 650, violentCrimes: 200, propertyCrimes: 450 } },
+            { name: "Meerut", coords: [28.9845, 77.7060], rate: "low", statistics: { totalCrimes: 300, violentCrimes: 80, propertyCrimes: 220 } },
+            { name: "Muzaffarnagar", coords: [29.4685, 77.7068], rate: "high", statistics: { totalCrimes: 1100, violentCrimes: 500, propertyCrimes: 600 } },
+            { name: "Rohtak", coords: [28.8946, 76.6102], rate: "medium", statistics: { totalCrimes: 500, violentCrimes: 150, propertyCrimes: 350 } },
+            { name: "Sonipat", coords: [28.9984, 77.0112], rate: "low", statistics: { totalCrimes: 250, violentCrimes: 60, propertyCrimes: 190 } },
+            { name: "Panipat", coords: [29.3909, 76.9689], rate: "medium", statistics: { totalCrimes: 600, violentCrimes: 250, propertyCrimes: 350 } },
+            // Add more regions as needed
+        ];
+
+        // Function to add regions to the map
+        function addRegionsToMap() {
+            regions.forEach(region => {
+                let color;
+                switch (region.rate) {
+                    case "high":
+                        color = "red";
+                        break;
+                    case "medium":
+                        color = "yellow";
+                        break;
+                    case "low":
+                        color = "green";
+                        break;
+                }
+
+                // Create circle marker
+                const marker = L.circleMarker(region.coords, {
+                    color: color,
+                    radius: 8,
+                    fillOpacity: 0.6,
+                }).addTo(map);
+
+                // Add region name as a label
+                marker.bindTooltip(region.name, {
+                    permanent: true,
+                    direction: 'top',
+                    className: 'region-label'
+                }).openTooltip();
+
+                // Add click event to show statistics in a popup
+                marker.on('click', function () {
+                    const stats = region.statistics;
+                    const content = `
+                        <strong>${region.name}</strong><br>
+                        <strong>Crime Rate:</strong> ${region.rate}<br>
+                        <strong>Total Crimes:</strong> ${stats.totalCrimes}<br>
+                        <strong>Violent Crimes:</strong> ${stats.violentCrimes}<br>
+                        <strong>Property Crimes:</strong> ${stats.propertyCrimes}
+                    `;
+                    
+                    L.popup()
+                        .setLatLng(region.coords)
+                        .setContent(content)
+                        .openOn(map);
+                });
+            });
+        }
+
+        addRegionsToMap();
+    </script>
+</body>
+
+</html>
+    
+</body>
+
+</html>

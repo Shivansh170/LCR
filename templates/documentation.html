@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - Local Crime Reporting</title>
+    <link rel="stylesheet" href="documentatino.css"> <!-- Link to your external CSS file -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="IMG-20241002-WA0025.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="{{url_for('static',filename='documentatino.css')}}">
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <img src="static/IMG-20241002-WA0025.jpg" alt="UP Police Logo" class="circular-logo" />
+        </div>
+        <h2 style="color: whitesmoke;">LCR</h2>
+        <div class="header-middle">
+            <div class="tagline">
+                <p>Ensuring Safety Together <span id="tagline" class="rotate">| Stay Alert!! | Report Crime!! | Keep Communities Safe!!</span></p>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search here..." id="search">
+                <button type="submit" id="search-button" class="search-btn">Search</button>
+            </div>
+        </div>
+    
+        <div class="datetime" id="datetime"></div>
+    
+        <nav>
+            <ul>
+                <li><a href="front_page.html">Home</a></li>
+                <li><a href="login.html">Report Crime</a></li>
+                <li><a href="crimerates.html">Dashboard</a></li>
+                {% if session.get('logged_in') %}  <!-- Check if the user is logged in -->
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                    <li><a href="login.html">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    
+
+    <!-- Documentation Section -->
+    <section class="documentation">
+        <h2>Project Documentation</h2>
+        <article>
+            <h3>Overview</h3>
+            <p>This project aims to streamline local crime reporting and information dissemination. It enables users to
+                report crimes and access vital crime statistics and safety information within their communities.</p>
+        </article>
+
+        <article>
+            <h3>Features</h3>
+            <ul>
+                <li>Crime Reporting Platform</li>
+                <li>Live Crime Rate Statistics</li>
+                <li>Safety Tips and Guidelines</li>
+                <li>Responsive Design for Mobile Users</li>
+            </ul>
+        </article>
+
+        <article>
+            <h3>How to Use the Platform</h3>
+            <ol>
+                <li>Navigate to the home page and select "Report Crime" to submit a crime report.</li>
+                <li>Check the "Crime Rates" section for the latest statistics in your area.</li>
+                <li>Use the "Login" feature for secure access to your reporting history.</li>
+            </ol>
+        </article>
+
+        <article>
+            <h3>API Integration</h3>
+            <p>Our platform integrates with live crime data APIs to fetch real-time updates for users. Developers can
+                extend the platform's functionality using our documented APIs.</p>
+        </article>
+
+        <article>
+            <h3>System Requirements</h3>
+            <ul>
+                <li>Web Browser: Latest version of Chrome, Firefox, or Safari</li>
+                <li>Responsive on both Desktop and Mobile</li>
+                <li>JavaScript enabled</li>
+            </ul>
+        </article>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-left">
+                <h2>LCR: Community Safety</h2>
+                <p>The core purpose of a Local Crime Reporting is to create a system that allows communities to stay informed about criminal activities in their area.</p>
+            </div>
+            <div class="divider"></div> <!-- Vertical line divider -->
+            <div class="footer-middle">
+                <div class="product">
+                    <h3>What we do?</h3>
+                    <ul>
+                        <li><a href="faq.html">How we submit a crime report?</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="general">
+                    <h3>GENERAL</h3>
+                    <ul>
+                        <li><a href="newsroom.html">Newsroom</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="mailto:lcr6.022@gmail.com">Email</a></li>
+                    </ul>
+                </div>
+                <div class="social">
+                    <h3>SOCIAL</h3>
+                    <ul>
+                        <li>
+                            <a href="https://www.linkedin.com" target="_blank">
+                                <img src="static/instagram logo.svg" alt="LinkedIn" class="social-icon" /> Instagram
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.twitter.com" target="_blank">
+                                <img src="static/X.jpg" alt="Twitter" class="social-icon" /> Twitter
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com" target="_blank">
+                                <img src="static/Facebook_.png" alt="Facebook" class="social-icon" /> Facebook
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <ul>
+                <li><a href="documentation.html">Documentation</a></li>
+                <li><a href="test.html">Privacy & Cookie Policy</a></li>
+            </ul>
+        </div>
+    </footer>
+    <script src="scripts.js"></script>
+    <script>
+        // Script for updating the current date and time
+    function updateTime() {
+        const now = new Date();
+        document.getElementById('datetime').innerHTML = now.toLocaleString();
+    }
+
+    const phrases = ["Stay Alert!!", "Report Crime", "Keep Communities Safe!!"];
+    let index = 0;
+
+    function rotateText() {
+        index = (index + 1) % phrases.length;
+        document.getElementById("tagline").textContent = phrases[index];
+    }
+
+    setInterval(updateTime, 1000); // Update time every second
+    setInterval(rotateText, 3000); // Change tagline every 3 seconds
+
+    // Search functionality
+    document.getElementById("search-button").addEventListener("click", function () {
+        const searchTerm = document.getElementById("search").value;
+        const resultsContainer = document.getElementById("search-results-container");
+
+        // Clear previous results
+        resultsContainer.innerHTML = '';
+
+        // Dummy data for testing
+        const dummyData = [
+            { description: "Theft reported on 10th Avenue." },
+            { description: "Assault incident near Central Park." },
+            { description: "Vandalism case at 5th Street." },
+            { description: "Ghaziabad is overpopulated." }
+        ];
+
+        // Filter the results based on the search term
+        const results = dummyData.filter(result => result.description.toLowerCase().includes(searchTerm.toLowerCase()));
+
+        if (results.length === 0) {
+            resultsContainer.innerHTML = '<p>No results found.</p>';
+        } else {
+            results.forEach(result => {
+                const div = document.createElement("div");
+                div.className = "search-result"; 
+                div.textContent = result.description; 
+                resultsContainer.appendChild(div); 
+            });
+        }
+    });
+</script>
+</body>
+
+</html>
